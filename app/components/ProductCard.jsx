@@ -136,7 +136,7 @@ export default function ProductCard({ product, onAddToCart }) {
       size: selectedSize,
       price: product.price,
     });
-    setTimeout(() => setAdded(false), 5000);
+    setTimeout(() => setAdded(false), 10000);
   };
 
   const stockMap = product.stock?.[selectedColor] ?? {};
