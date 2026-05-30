@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 /**
  * app/components/ProductCard.jsx
@@ -14,25 +14,20 @@
  * another variant (or the same one again) immediately.
  */
 
-import {
-  useState,
-  useRef,
-} from 'react';
-import {
-  Package, Check, Minus, Plus,
-} from 'lucide-react';
-import Image from 'next/image';
-import ColorSelector from './ColorSelector';
-import SizeSelector from './SizeSelector';
-import { formatPrice, isInStock } from '../../lib/products';
+import { useState, useRef } from "react";
+import { Package, Check, Minus, Plus } from "lucide-react";
+import Image from "next/image";
+import ColorSelector from "./ColorSelector";
+import SizeSelector from "./SizeSelector";
+import { formatPrice, isInStock } from "../../lib/products";
 
 export default function ProductCard({ product, onAddToCart }) {
   const colorKeys = Object.keys(product.variants);
 
   const [selectedColor, setSelectedColor] = useState(colorKeys[0]);
-  const [selectedSize,  setSelectedSize]  = useState(null);
-  const [sizeError,     setSizeError]     = useState(false);
-  const [added,         setAdded]         = useState(false);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [sizeError, setSizeError] = useState(false);
+  const [added, setAdded] = useState(false);
   const touchStartX = useRef(null);
 
   // When color changes, clear size if the chosen size is OOS in new color
@@ -61,7 +56,8 @@ export default function ProductCard({ product, onAddToCart }) {
       handleColorChange(next);
     } else {
       // swipe right → previous color
-      const prev = colorKeys[(currentIndex - 1 + colorKeys.length) % colorKeys.length];
+      const prev =
+        colorKeys[(currentIndex - 1 + colorKeys.length) % colorKeys.length];
       handleColorChange(prev);
     }
   };
@@ -81,13 +77,13 @@ export default function ProductCard({ product, onAddToCart }) {
     setAdded(true);
 
     onAddToCart({
-      cartItemId: crypto.randomUUID(),          // unique per add — allows duplicates
-      productId:  product.id,
-      name:       product.name,
-      color:      selectedColor,
+      cartItemId: crypto.randomUUID(), // unique per add — allows duplicates
+      productId: product.id,
+      name: product.name,
+      color: selectedColor,
       colorLabel: product.variants[selectedColor].label,
-      size:       selectedSize,
-      price:      product.price,
+      size: selectedSize,
+      price: product.price,
     });
 
     // Reset after 1.5 s so the user can add another variant immediately
@@ -104,7 +100,7 @@ export default function ProductCard({ product, onAddToCart }) {
           w-full aspect-[3/4] max-w-lg mx-auto
           flex flex-col items-center justify-center
           relative overflow-hidden
-          ${selectedColor === 'black' ? 'bg-[#111]' : 'bg-[#F5F5F5]'}
+          ${selectedColor === "black" ? "bg-[#111]" : "bg-[#F5F5F5]"}
           transition-colors duration-300
           cursor-grab active:cursor-grabbing
         `}
@@ -117,8 +113,8 @@ export default function ProductCard({ product, onAddToCart }) {
           className="absolute inset-0 opacity-[0.06]"
           style={{
             backgroundImage:
-              'repeating-linear-gradient(0deg,#888 0,#888 1px,transparent 1px,transparent 60px),' +
-              'repeating-linear-gradient(90deg,#888 0,#888 1px,transparent 1px,transparent 60px)',
+              "repeating-linear-gradient(0deg,#888 0,#888 1px,transparent 1px,transparent 60px)," +
+              "repeating-linear-gradient(90deg,#888 0,#888 1px,transparent 1px,transparent 60px)",
           }}
         />
 
@@ -128,6 +124,7 @@ export default function ProductCard({ product, onAddToCart }) {
             alt={`${product.name} in ${product.variants[selectedColor].label}`}
             fill
             priority
+            quality={85}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"
           />
@@ -136,12 +133,14 @@ export default function ProductCard({ product, onAddToCart }) {
             <Package
               size={68}
               strokeWidth={0.8}
-              className={selectedColor === 'black' ? 'text-gray-700' : 'text-gray-300'}
+              className={
+                selectedColor === "black" ? "text-gray-700" : "text-gray-300"
+              }
               aria-hidden="true"
             />
             <p
               className={`text-[10px] tracking-[0.22em] uppercase ${
-                selectedColor === 'black' ? 'text-gray-600' : 'text-gray-400'
+                selectedColor === "black" ? "text-gray-600" : "text-gray-400"
               }`}
             >
               {product.variants[selectedColor].label} · {product.name}
@@ -151,15 +150,19 @@ export default function ProductCard({ product, onAddToCart }) {
 
         {/* Swipe dot indicators */}
         {colorKeys.length > 1 && (
-          <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-10" aria-hidden="true">
+          <div
+            className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-10"
+            aria-hidden="true"
+          >
             {colorKeys.map((key) => (
               <span
                 key={key}
                 className={`
                   block rounded-full transition-all duration-300
-                  ${key === selectedColor
-                    ? 'w-4 h-1.5 bg-white'
-                    : 'w-1.5 h-1.5 bg-white/40'
+                  ${
+                    key === selectedColor
+                      ? "w-4 h-1.5 bg-white"
+                      : "w-1.5 h-1.5 bg-white/40"
                   }
                 `}
               />
@@ -170,7 +173,6 @@ export default function ProductCard({ product, onAddToCart }) {
 
       {/* ── Product Info ────────────────────────────── */}
       <div className="max-w-lg mx-auto px-5 pt-9 pb-14 space-y-8">
-
         {/* Name + tagline */}
         <div>
           <p className="text-[10px] tracking-[0.22em] uppercase text-gray-400 mb-2">
@@ -208,8 +210,6 @@ export default function ProductCard({ product, onAddToCart }) {
           error={sizeError}
         />
 
-
-
         {/* Add to Order CTA */}
         <button
           type="button"
@@ -222,9 +222,10 @@ export default function ProductCard({ product, onAddToCart }) {
             border-2
             transition-all duration-200
             active:scale-[0.99]
-            ${added
-              ? 'bg-white text-black border-black'
-              : 'bg-black text-white border-black hover:bg-neutral-800'
+            ${
+              added
+                ? "bg-white text-black border-black"
+                : "bg-black text-white border-black hover:bg-neutral-800"
             }
           `}
         >

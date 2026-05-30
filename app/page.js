@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 /**
  * app/page.js — COD E-Commerce Landing Page
@@ -12,25 +12,22 @@
  * rest as a Server Component, and remove the top-level 'use client'.
  */
 
-import { useState } from 'react';
-import Image from 'next/image';
-import {
-  Truck,
-  Shield,
-  Star,
-  Zap,
-} from 'lucide-react';
+import { useState } from "react";
+import Image from "next/image";
+import { Truck, Shield, Star, Zap } from "lucide-react";
 
-import { products } from '../lib/products';
-import ProductCard from './components/ProductCard';
-import CheckoutForm from './components/CheckoutForm';
+import { products } from "../lib/products";
+import ProductCard from "./components/ProductCard";
+import CheckoutForm from "./components/CheckoutForm";
 
 /* ─────────────────────────────────────────────────
    STICKY HEADER
 ───────────────────────────────────────────────── */
 function Header({ cartCount }) {
   const scrollToForm = () =>
-    document.getElementById('order-form')?.scrollIntoView({ behavior: 'smooth' });
+    document
+      .getElementById("order-form")
+      ?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-lg border-b border-black">
@@ -54,7 +51,7 @@ function Header({ cartCount }) {
         >
           {cartCount > 0 && (
             <span
-              aria-label={`${cartCount} item${cartCount > 1 ? 's' : ''} in order`}
+              aria-label={`${cartCount} item${cartCount > 1 ? "s" : ""} in order`}
               className="
                 absolute -top-1.5 -right-1.5
                 w-4 h-4 rounded-full bg-white border border-black
@@ -65,7 +62,7 @@ function Header({ cartCount }) {
               {cartCount}
             </span>
           )}
-          {cartCount > 0 ? 'View Order' : 'Buy Now'}
+          {cartCount > 0 ? "View Order" : "Buy Now"}
         </button>
       </div>
     </header>
@@ -85,6 +82,7 @@ function Hero() {
           alt="EMPRNTE collection"
           fill
           priority
+          quality={90}
           sizes="100vw"
           className="object-cover"
         />
@@ -97,17 +95,35 @@ function Hero() {
    FEATURES
 ───────────────────────────────────────────────── */
 const FEATURES = [
-  { icon: Zap,    title: 'Ultra Performance',      desc: 'Premium-grade materials chosen for durability and lasting excellence.' },
-  { icon: Shield, title: '100% Quality Assured',   desc: 'Every unit passes a strict multi-point inspection before shipping.' },
-  { icon: Truck,  title: 'Nationwide Delivery',    desc: 'Delivered to all 58 wilayas of Algeria within 48–72 hours.' },
-  { icon: Star,   title: 'Thousands of Customers', desc: 'Join a growing community that trusts EMPRNTE for premium at fair prices.' },
+  {
+    icon: Zap,
+    title: "Ultra Performance",
+    desc: "Premium-grade materials chosen for durability and lasting excellence.",
+  },
+  {
+    icon: Shield,
+    title: "100% Quality Assured",
+    desc: "Every unit passes a strict multi-point inspection before shipping.",
+  },
+  {
+    icon: Truck,
+    title: "Nationwide Delivery",
+    desc: "Delivered to all 58 wilayas of Algeria within 48–72 hours.",
+  },
+  {
+    icon: Star,
+    title: "Thousands of Customers",
+    desc: "Join a growing community that trusts EMPRNTE for premium at fair prices.",
+  },
 ];
 
 function Features() {
   return (
     <section className="bg-[#F9F9F9] border-t border-gray-200">
       <div className="max-w-lg mx-auto px-5 py-16">
-        <p className="text-[10px] tracking-[0.22em] uppercase text-gray-400 mb-2">Why EMPRNTE</p>
+        <p className="text-[10px] tracking-[0.22em] uppercase text-gray-400 mb-2">
+          Why EMPRNTE
+        </p>
         <h2 className="text-[28px] font-black tracking-[-0.03em] text-black mb-12">
           Built Different.
         </h2>
@@ -118,13 +134,20 @@ function Features() {
               className="flex items-start gap-5 py-7 border-b border-gray-200 last:border-b-0"
             >
               <div className="shrink-0 w-10 h-10 border border-black flex items-center justify-center">
-                <Icon size={18} strokeWidth={1.5} className="text-black" aria-hidden="true" />
+                <Icon
+                  size={18}
+                  strokeWidth={1.5}
+                  className="text-black"
+                  aria-hidden="true"
+                />
               </div>
               <div className="pt-0.5">
                 <h3 className="text-[12px] font-black tracking-[0.12em] uppercase text-black mb-1.5">
                   {title}
                 </h3>
-                <p className="text-[13px] text-gray-500 leading-[1.65]">{desc}</p>
+                <p className="text-[13px] text-gray-500 leading-[1.65]">
+                  {desc}
+                </p>
               </div>
             </div>
           ))}
@@ -195,7 +218,10 @@ export default function Page() {
       </section>
 
       {/* Checkout Form Section */}
-      <section id="order-form" className="bg-white border-t-2 border-black scroll-mt-[55px]">
+      <section
+        id="order-form"
+        className="bg-white border-t-2 border-black scroll-mt-[55px]"
+      >
         <CheckoutForm cart={cart} onRemoveItem={handleRemoveFromCart} />
       </section>
 
