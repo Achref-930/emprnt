@@ -136,7 +136,7 @@ export default function ProductCard({ product, onAddToCart }) {
       size: selectedSize,
       price: product.price,
     });
-    setTimeout(() => setAdded(false), 1500);
+    setTimeout(() => setAdded(false), 5000);
   };
 
   const stockMap = product.stock?.[selectedColor] ?? {};
@@ -326,12 +326,6 @@ export default function ProductCard({ product, onAddToCart }) {
             </>
           )}
         </button>
-
-        {added && (
-          <p className="text-center text-[11px] text-gray-400">
-            Pick another colour or size and add again to order more.
-          </p>
-        )}
       </div>
     </article>
   );
