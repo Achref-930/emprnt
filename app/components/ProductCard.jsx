@@ -326,6 +326,12 @@ export default function ProductCard({ product, onAddToCart }) {
             </>
           )}
         </button>
+
+        {added && (
+          <p className="text-center text-[11px] text-gray-400">
+            Pick another colour or size and add again to order more.
+          </p>
+        )}
       </div>
     </article>
   );
