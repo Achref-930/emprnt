@@ -24,10 +24,17 @@ import CheckoutForm from "./components/CheckoutForm";
    STICKY HEADER
 ───────────────────────────────────────────────── */
 function Header({ cartCount }) {
-  const scrollToForm = () =>
-    document
-      .getElementById("first-product")
-      ?.scrollIntoView({ behavior: "smooth" });
+  const scrollToForm = () => {
+    if (cartCount > 0) {
+      document
+        .getElementById("order-form")
+        ?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      document
+        .getElementById("first-product")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-lg border-b border-black">
