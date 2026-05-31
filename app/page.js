@@ -26,7 +26,7 @@ import CheckoutForm from "./components/CheckoutForm";
 function Header({ cartCount }) {
   const scrollToForm = () =>
     document
-      .getElementById("order-form")
+      .getElementById("first-product")
       ?.scrollIntoView({ behavior: "smooth" });
 
   return (
@@ -205,7 +205,7 @@ export default function Page() {
       <Header cartCount={cart.length} />
       <Hero />
       {/* Products Section */}
-      <section className="max-w-lg mx-auto px-5 pt-20">
+      <section id="first-product" className="max-w-lg mx-auto px-5 pt-20">
         <div className="space-y-16">
           {products.map((product) => (
             <ProductCard
